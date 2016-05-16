@@ -1,0 +1,33 @@
+{
+  "name": "es-modulesify",
+  "version": "0.0.0",
+  "description": "browserify transform to transpile CommonJS modules to ES modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js",
+    "example": "browserify example -g ./ -g rollupify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahdinosaur/es-modulesify.git"
+  },
+  "keywords": [],
+  "author": "Mikey <michael.williams@enspiral.com> (http://dinosaur.is)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ahdinosaur/es-modulesify/issues"
+  },
+  "homepage": "https://github.com/ahdinosaur/es-modulesify#readme",
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "rollupify": "^0.3.1",
+    "tape": "^4.5.1"
+  },
+  "dependencies": {
+    "cuid": "^1.3.8",
+    "detective": "github:deathcap/node-detective#73156eae2a2c73577d1d03e4c5dad499b73f66c6",
+    "falafel": "^1.2.0",
+    "syntax-error": "github:ahdinosaur/node-syntax-error#ab64300af477eabb1a4438f88ff3591df9266f09",
+    "through2": "^2.0.1"
+  }
+}
