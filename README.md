@@ -2,7 +2,7 @@
 
 browserify transform to transpile CommonJS modules to ES modules
 
-because **browserify-compatible CommonJS has statically analyzable modules**
+because **browserify-compatible CommonJS modules are statically analyzable**
 
 ```shell
 npm install --save ahdinosaur/es-modulesify
