@@ -28,7 +28,7 @@ function esModulesify (filename, options) {
       sourceType: 'module'
     }, onNode)
 
-    this.push(getImportStatements(modules))
+    //this.push(getImportStatements(modules))
     this.push(ast.toString())
     this.push(null)
   }
@@ -63,7 +63,7 @@ function esModulesify (filename, options) {
   }
 
   function onModuleExports (node) {
-    //node.update("export defaults")
+    exportDefault(node)
   }
 
   return through(transform, flush)
@@ -76,7 +76,13 @@ function isRequire (node) {
 }
 
 function isModuleExports (node) {
-  return
+  return node.type === 'AssignmentExpression'
+    && node.operator === '='
+    && node.left.type === 'MemberExpression'
+    && node.left.property.type === 'Identifier'
+    && node.left.property.name === 'exports'
+    && node.left.object.type === 'Identifier'
+    && node.left.object.name === 'module'
 }
 
 // ported from https://github.com/jonbretman/amd-to-as6/blob/7d37a1dadae6dcd82b2b0ea9ffa15ffe5c9d94a8/index.js#L144-L158
@@ -90,4 +96,15 @@ function getImportStatements (modules) {
       return `import ${variableName} from '${moduleName}'`
     }
   }).join(os.EOL) + '\n'
+}
+
+function exportDefault (node) {
+  // hmm, why doesn't this work?
+  node.update(
+    node.source()
+    .replace(
+      'module.exports =',
+      'export default'
+    )
+  )
 }
